@@ -1,4 +1,7 @@
-import sys, random, math
+import sys, random, math 
+# remove commented out part to generate the plot.
+#import matplotlib.pyplot as plt
+#import numpy as np
 
 class MockComputer:
     
@@ -52,7 +55,9 @@ class UIDNetworkDriver:
                 for comp in self.computers:
                     comp.round(len(self.computers) + i - 1) 
             else:
-                print("Round ", i , ": "," ". join(print_output), "Max Bits ", max(output).bit_length())
+		result = max(output).bit_length()
+                print("Round ", i , ": "," ". join(print_output), "Max Bits ", result)
+		return  result
                 break
             if mode == "verbose":
                 print("Round ", i , ": "," ". join(print_output), "Max Bits ", max(output).bit_length())
@@ -62,8 +67,15 @@ if __name__ == '__main__' :
     if len(sys.argv) != 3:
         print ("Please supply the correct arguments")
         raise SystemExit(1)
-
-    test = UIDNetworkDriver(int(sys.argv[1]))
-    test.permute(str(sys.argv[2]))
+    n = int(sys.argv[1])
+    mode = str(sys.argv[2])
+    result = []
+#    for n in range (2,200):
+    	test = UIDNetworkDriver(n)
+    	result.append(test.permute(mode))
+#    plt.plot(np.array(range(2,200)),np.array(result))
+#    plt.xlabel('n')
+#    plt.ylabel("max bits")
+#    plt.show()
 
     
