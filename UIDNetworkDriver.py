@@ -58,7 +58,6 @@ class UIDNetworkDriver:
                 print("Round ", i , ": "," ". join(print_output), "Max Bits ", max(output).bit_length())
             i = i + 1
 
-
 if __name__ == '__main__' :
     if len(sys.argv) != 3:
         print ("Please supply the correct arguments")
