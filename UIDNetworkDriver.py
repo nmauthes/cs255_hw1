@@ -9,18 +9,11 @@ class MockComputer:
         self.ID = self.round()
 
     def round(self, i = None):
-        '''Computes ids of length at most O(log i) many bits.
-           The Permute-By-Sorting method proved that the
-           probability of uniqueness is 1-1/i if
-           each id is chosen uniformly at random from the
-           range [0 - i**3].
-           In this case i represents the number of MockComputers.
-           Finlly, the cube root of this range is taken.        
+        '''Computes ids of length at most O(log i) many bits.      
         '''
         if i == None:
             return random.randint(0,10)
-        ID = random.randint(0,i**3)
-        ID = math.ceil(ID**(1/3))
+        ID = random.randint(0,((2**i.bit_length())))
         self.ID = ID
 
     def getId(self):
@@ -57,7 +50,7 @@ class UIDNetworkDriver:
             print_output = [str(id) for id in output]
             if self.__refree(output) is False:
                 for comp in self.computers:
-                    comp.round(len(self.computers)) 
+                    comp.round(len(self.computers) + i - 1) 
             else:
                 print("Round ", i , ": "," ". join(print_output), "Max Bits ", max(output).bit_length())
                 break
