@@ -31,7 +31,7 @@ class UIDNetworkDriver:
         '''
         self.computers = [ MockComputer() for i in range (n)]
 
-    def __refree(self, out):
+    def __referee(self, out):
         '''Checks to ensure that no two MockComputers
            have the same id
         '''
@@ -44,20 +44,20 @@ class UIDNetworkDriver:
 
     def permute(self , mode):
         '''Repeatedly assigns a new set of ids to the
-           MockComputers until the refree declares that 
+           MockComputers until the referee declares that 
            they are unique
         '''
         i = 1
         while(1):
             output = [comp.getId() for comp in self.computers]
             print_output = [str(id) for id in output]
-            if self.__refree(output) is False:
+            if self.__referee(output) is False:
                 for comp in self.computers:
                     comp.round(len(self.computers) + i - 1) 
             else:
-		result = max(output).bit_length()
+                result = max(output).bit_length()
                 print("Round ", i , ": "," ". join(print_output), "Max Bits ", result)
-		return  result
+                return  result
                 break
             if mode == "verbose":
                 print("Round ", i , ": "," ". join(print_output), "Max Bits ", max(output).bit_length())
@@ -71,8 +71,8 @@ if __name__ == '__main__' :
     mode = str(sys.argv[2])
     result = []
 #    for n in range (2,200):
-    	test = UIDNetworkDriver(n)
-    	result.append(test.permute(mode))
+    test = UIDNetworkDriver(n)
+    result.append(test.permute(mode))
 #    plt.plot(np.array(range(2,200)),np.array(result))
 #    plt.xlabel('n')
 #    plt.ylabel("max bits")
