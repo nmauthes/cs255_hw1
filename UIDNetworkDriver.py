@@ -6,7 +6,7 @@ class MockComputer:
         '''Initialises the MockComputer's id
            to a random value
         '''
-        self.ID = self.round()
+        self.__ID = self.round()
 
     def round(self, i = None):
         '''Computes ids of length at most O(log i) many bits.      
@@ -14,14 +14,14 @@ class MockComputer:
         if i == None:
             return random.randint(0,10)
         ID = random.randint(0,((2**i.bit_length())))
-        self.ID = ID
+        self.__ID = ID
 
     def getId(self):
         '''Returns the ID of the MockComputer
         '''
-        return self.ID
+        return self.__ID
 
-class UIDNetworkDriver:
+class UIDNetworkDriver(MockComputer):
     
     def __init__(self, n):
         '''Creates a list of MockComputers
